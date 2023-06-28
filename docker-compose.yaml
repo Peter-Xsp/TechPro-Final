@@ -4,16 +4,21 @@ services:
     build: backend
     restart: always
     ports:
-     - "8090:8080"
+     - "8080:8080"
     networks:
       - react-spring
       - spring-mysql
+    env_file:
+      - .env
+    
+      
   
   db:
     image: mysql:latest
+    env_file:
+      - .env
     environment:
-      - MYSQL_DATABASE=final_project
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
     restart: always
     ports:
       - '3306:3306'
@@ -21,6 +26,7 @@ services:
       - ./db/final_project_db.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - spring-mysql
+    
 
   frontend:
     build:

@@ -28,9 +28,9 @@ import javax.persistence.GenerationType;
 public class People {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "PersonID")
-    private int PersonID;
+    private Integer PersonID;
 
     @Column(name = "FirstName")
     private String FirstName;
